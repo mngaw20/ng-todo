@@ -14,26 +14,26 @@
     <div class="container text-center" ng-controller="mainController">
         <div class="jumbotron">
             <h1 class="display-3">To-Do App
-                <span class="label label-primary">0</span>
+                <span class="label label-primary">{{todosLength()}}</span>
             </h1>
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
-                    <form>
-                        <input type="text" class="form-control" placeholder="I want a pony..." />
+                    <form ng-submit="addTodo(); formText = '';">
+                        <input type="text" class="form-control" placeholder="I want a pony..." ng-model="formText" />
                     </form>
                 </div>
             </div>
         </div>
         <ul class="list-unstyled">
-            <li>
+            <li ng-repeat="todo in todos">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" value=""> Get Milk
+                        <input type="checkbox" value="" ng-model="todo.completed"> {{todo.text}}
                     </label>
                 </div>
             </li>
         </ul>
-        <button type="button" class="btn btn-danger">Remove Selected</button>
+        <button type="button" class="btn btn-danger" ng-click="removeTodos()">Remove Selected</button>
     </div>
 </body>
 
